@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <style>
 canvas {
-    background-color: #ffffff;
+    background-color: #fdfdfd;
 }
 </style>
 </head>
@@ -16,8 +16,8 @@ function startGame() {
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
-        this.canvas.width = 100%;
-        this.canvas.height = 100%;
+        this.canvas.width = 50%;
+        this.canvas.height = 50%;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     }
