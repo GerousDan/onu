@@ -1,36 +1,84 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<style>
-canvas {
-<!--
-    border: 1px solid #d3d3d3;
-    background-color: #f1f1f1;
--->
-}
-</style>
-</head>
-<body onload="startGame()">
-<script>
-
-function startGame() {
-    myGameArea.start();
-}
-
-var myGameArea = {
-    canvas : document.createElement("canvas"),
-    start : function() {
-        this.canvas.width = 480;
-        this.canvas.height = 270;
-        this.context = this.canvas.getContext("2d");
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-    }
-}
-
-</script>
-
-<p>We have created a game area! (or at least an empty canvas)</p>
-
-</body>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<style>
+		html, body {
+			position: fixed;
+			border: 0px;
+			margin: 0px;
+			padding: 0px;
+			overflow: hidden;
+		}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<script>
+			function loadImages(sources, callback) {
+				var images = {};
+				var loadedImages = 0;
+				var numImages = 0;
+				for(var src in sources) {
+				  numImages++;
+				}
+				for(var src in sources) {
+					images[src] = new Image();
+					images[src].onload = function() {
+						if(++loadedImages >= numImages) {
+							callback(images);
+						}
+					};
+					images[src].src = sources[src];
+				}
+			}
+			var iWidth = window.innerWidth;
+			canvas.width = iWidth;
+			var iHeight = window.innerHeight;
+			canvas.height = iHeight;
+			var context = canvas.getContext('2d');
+			context.globalAlpha = 0.5;
+			var sources = {
+				background: 'assets/background.png',
+				logo: 'assets/logo_hor_en.png',
+				sets: 'assets/sets.png',
+				cards: 'assets/cards.png',
+				cards2: 'assets/cards2.png',
+				cards3: 'assets/cards3.png'
+			};
+			var xs = {
+				background: 0,
+				logo: iWidth/2-iHeight*3/8,
+				set1: iWidth/45,
+				set2: iWidth/22.5 + iWidth*.173,
+				set3: iWidth/15 + iWidth*.346,
+				set4: iWidth*4/45 + iWidth*.52,
+				set5: iWidth/9 + iWidth*.693,
+				col2: iWidth/22.5 + iWidth/4.5
+			};
+			var ys = {
+				background: 0,
+				logo: iHeight/40,
+				sets: iHeight*.175
+			};
+			var ws = {
+				logo: iHeight*.75,
+				sets: iWidth*.173
+			};
+			var hs = {
+				logo: iHeight/8,
+				sets: iWidth*.087
+			};
+			loadImages(sources, function(images) {
+				context.drawImage(images.background, xs.background, ys.background, iWidth, iHeight);
+				context.drawImage(images.logo, xs.logo, ys.logo, ws.logo, hs.logo);
+				context.drawImage(images.logo, xs.logo, ys.logo, ws.logo, hs.logo);
+				context.drawImage(images.sets,   0, 0, 234, 117, xs.set1, ys.sets, ws.sets, hs.sets);
+				context.drawImage(images.sets, 234, 0, 234, 117, xs.set2, ys.sets, ws.sets, hs.sets);
+				context.drawImage(images.sets, 468, 0, 234, 117, xs.set3, ys.sets, ws.sets, hs.sets);
+				context.drawImage(images.sets, 702, 0, 234, 117, xs.set4, ys.sets, ws.sets, hs.sets);
+				context.drawImage(images.sets, 936, 0, 234, 117, xs.set5, ys.sets, ws.sets, hs.sets);
+			});
+		</script>
+	</body>
 </html>
