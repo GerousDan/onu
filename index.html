@@ -36,6 +36,16 @@
 			canvas.width = iWidth;
 			var iHeight = window.innerHeight;
 			canvas.height = iHeight;
+			var iSquare;
+			var iLogo;
+			if (iWidth < iHeight) {
+				iSquare = iWidth;
+				iLogo = iWidth*43/45; 
+			} else {
+				iSquare = iHeight - iWidth/45 - iWidth*.087;
+				iLogo = iHeight*.75;
+			}
+			iSquare = (iSquare - iWidth/9)/4;
 			var context = canvas.getContext('2d');
 			context.globalAlpha = 0.5;
 			var sources = {
@@ -48,27 +58,32 @@
 			};
 			var xs = {
 				background: 0,
-				logo: iWidth/2-iHeight*3/8,
+				logo: (iWidth-iLogo)/2,
 				set1: iWidth/45,
 				set2: iWidth/22.5 + iWidth*.173,
 				set3: iWidth/15 + iWidth*.346,
 				set4: iWidth*4/45 + iWidth*.52,
 				set5: iWidth/9 + iWidth*.693,
-				col2: iWidth/22.5 + iWidth/4.5
+				card2:iWidth/22.5 + iSquare
 			};
 			var ys = {
 				background: 0,
-				logo: iHeight/40,
-				sets: iHeight*.175
+				logo: (iHeight*7/8 + iWidth/45 + iWidth*.087)/2, /*iHeight/40,*/
+				sets: iWidth/45,
+				card1: iWidth/22.5+iWidth*.087,
+				card2: iWidth/22.5+iWidth*.087+iSquare+iWidth/45
 			};
 			var ws = {
-				logo: iHeight*.75,
+				logo: iLogo,
 				sets: iWidth*.173
 			};
 			var hs = {
-				logo: iHeight/8,
+				logo: iLogo/6,
 				sets: iWidth*.087
 			};
+			function drawSet1() {
+				context.drawImage(images.sets,   0, 0, 234, 117, xs.set1, ys.sets, ws.sets, hs.sets);
+			}
 			loadImages(sources, function(images) {
 				context.drawImage(images.background, xs.background, ys.background, iWidth, iHeight);
 				context.drawImage(images.logo, xs.logo, ys.logo, ws.logo, hs.logo);
@@ -78,6 +93,10 @@
 				context.drawImage(images.sets, 468, 0, 234, 117, xs.set3, ys.sets, ws.sets, hs.sets);
 				context.drawImage(images.sets, 702, 0, 234, 117, xs.set4, ys.sets, ws.sets, hs.sets);
 				context.drawImage(images.sets, 936, 0, 234, 117, xs.set5, ys.sets, ws.sets, hs.sets);
+				context.drawImage(images.sets,   0, 0, 234, 117, xs.set1, ys.sets, ws.sets, hs.sets);
+				context.drawImage(images.cards,  0, 0, 409, 409, xs.set1, ys.card1,iSquare, iSquare);
+				context.drawImage(images.cards,409, 0, 409, 409, xs.card2,ys.card1,iSquare, iSquare);
+				context.drawImage(images.cards,818, 0, 409, 409, xs.set1, ys.card2,iSquare, iSquare);
 			});
 		</script>
 	</body>
