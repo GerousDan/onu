@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width, minimal-ui, initial-scale=1.0, user-scalable = no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="apple-mobile-web-app-title" content="Any Night">
+		<link rel="apple-touch-icon" href="assets/Icon-ldpi.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="assets/Icon-mdpi.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="assets/Icon-hdpi.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="assets/Icon-xhdpi.png">
+		<link rel="apple-touch-icon" sizes="167x167" href="assets/Icon-xxhdpi.png.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="assets/Icon-xxxhdpi.png.png">
 		<style>
 		html, body {
 			position: fixed;
@@ -96,6 +105,7 @@
 				context.drawImage(images.sets,   0, 0, 234, 117, xs.set1, ys.sets, ws.sets, hs.sets);
 				context.drawImage(images.cards,  0, 0, 409, 409, xs.set1, ys.card1,iSquare, iSquare);
 				context.drawImage(images.cards,409, 0, 409, 409, xs.card2,ys.card1,iSquare, iSquare);
+				context.drawImage(images.cards,818, 0, 409, 409, xs.set1, ys.card2,iSquare, iSquare);
 				context.drawImage(images.cards,818, 0, 409, 409, xs.set1, ys.card2,iSquare, iSquare);
 			});
 		</script>
