@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>Any Night</title>
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="viewport" content="width=device-width, minimal-ui, initial-scale=1.0, user-scalable = no">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -11,8 +12,8 @@
 		<link rel="apple-touch-icon" sizes="152x152" href="assets/Icon-xhdpi.png"><!-- iPad, iPad mini 	152px × 152px (76pt × 76pt @2x) -->
 		<link rel="apple-touch-icon" sizes="167x167" href="assets/Icon-xxhdpi.png.png"><!-- iPad Pro 	167px × 167px (83.5pt × 83.5pt @2x) -->
 		<link rel="apple-touch-icon" sizes="180x180" href="assets/Icon-xxxhdpi.png.png"><!-- iPhone 	180px × 180px (60pt × 60pt @3x) -->
-		<link rel="apple-touch-startup-image" href="Splash-568h_en.png">
-		<link rel="apple-touch-startup-image" href="Splash-568h_en.png" media="screen and (min-device-width: 481px) and (max-device-width: 2048px) and (orientation:portrait)">
+		<!-- <link rel="apple-touch-startup-image" href="Splash-568h_en.png">
+		<link rel="apple-touch-startup-image" href="Splash-568h_en.png" media="screen and (min-device-width: 481px) and (max-device-width: 2048px) and (orientation:portrait)"> -->
 		<!-- <link rel="apple-touch-startup-image" href="Splash-568h_en.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" /> -->
 		<!-- iPhone 7 Plus, iPhone 6s Plus 	1080px × 1920px 	1920px × 1080px -->
 		<!-- iPhone 7, iPhone 6s 	750px × 1334px 	1334px × 750px -->
@@ -28,6 +29,7 @@
 			overflow: hidden;
 		}
 		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body>
 		<canvas id="canvas"></canvas>
@@ -98,24 +100,31 @@
 				logo: iLogo/6,
 				sets: iWidth*.087
 			};
-			function drawSet1() {
+			function drawSet1(images) {
 				context.drawImage(images.sets,   0, 0, 234, 117, xs.set1, ys.sets, ws.sets, hs.sets);
 			}
 			loadImages(sources, function(images) {
 				context.drawImage(images.background, xs.background, ys.background, iWidth, iHeight);
 				context.drawImage(images.logo, xs.logo, ys.logo, ws.logo, hs.logo);
 				context.drawImage(images.logo, xs.logo, ys.logo, ws.logo, hs.logo);
-				context.drawImage(images.sets,   0, 0, 234, 117, xs.set1, ys.sets, ws.sets, hs.sets);
+				drawSet1(images);
 				context.drawImage(images.sets, 234, 0, 234, 117, xs.set2, ys.sets, ws.sets, hs.sets);
 				context.drawImage(images.sets, 468, 0, 234, 117, xs.set3, ys.sets, ws.sets, hs.sets);
 				context.drawImage(images.sets, 702, 0, 234, 117, xs.set4, ys.sets, ws.sets, hs.sets);
 				context.drawImage(images.sets, 936, 0, 234, 117, xs.set5, ys.sets, ws.sets, hs.sets);
-				context.drawImage(images.sets,   0, 0, 234, 117, xs.set1, ys.sets, ws.sets, hs.sets);
-				context.drawImage(images.cards,  0, 0, 409, 409, xs.set1, ys.card1,iSquare, iSquare);
-				context.drawImage(images.cards,409, 0, 409, 409, xs.card2,ys.card1,iSquare, iSquare);
-				context.drawImage(images.cards,818, 0, 409, 409, xs.set1, ys.card2,iSquare, iSquare);
-				context.drawImage(images.cards,818, 0, 409, 409, xs.set1, ys.card2,iSquare, iSquare);
+				drawSet1(images);
+				<!-- context.drawImage(images.sets,   0, 0, 234, 117, xs.set1, ys.sets, ws.sets, hs.sets); -->
+				<!-- context.drawImage(images.cards,  0, 0, 409, 409, xs.set1, ys.card1,iSquare, iSquare); -->
+				<!-- context.drawImage(images.cards,409, 0, 409, 409, xs.card2,ys.card1,iSquare, iSquare); -->
+				<!-- context.drawImage(images.cards,818, 0, 409, 409, xs.set1, ys.card2,iSquare, iSquare); -->
+				<!-- context.drawImage(images.cards,818, 0, 409, 409, xs.set1, ys.card2,iSquare, iSquare); -->
 			});
+			$(document).ready(function(){
+				screen.addEventListener("orientationchange", function() {
+				<!-- $( window ).resize(function() { -->
+					window.location.reload();
+				});
+			}); 
 		</script>
 	</body>
 </html>
