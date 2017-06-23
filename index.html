@@ -99,11 +99,15 @@
 				logo: iLogo/6,
 				sets: iWidth*.087
 			};
+			function drawBackground(images) {
+				context.drawImage(images.background, xs.background, ys.background, iWidth, iHeight);
+			}		
 			function drawSet1(images) {
 				context.drawImage(images.sets,   0, 0, 234, 117, xs.set1, ys.sets, ws.sets, hs.sets);
 			}
 			loadImages(sources, function(images) {
-				context.drawImage(images.background, xs.background, ys.background, iWidth, iHeight);
+				drawBackground(images);
+				drawBackground(images);
 				context.drawImage(images.logo, xs.logo, ys.logo, ws.logo, hs.logo);
 				context.drawImage(images.logo, xs.logo, ys.logo, ws.logo, hs.logo);
 				drawSet1(images);
@@ -118,9 +122,9 @@
 				<!-- context.drawImage(images.cards,818, 0, 409, 409, xs.set1, ys.card2,iSquare, iSquare); -->
 				<!-- context.drawImage(images.cards,818, 0, 409, 409, xs.set1, ys.card2,iSquare, iSquare); -->
 			});
-			screen.addEventListener("orientationchange", function() {
+			window.addEventListener("orientationchange", function() {
 				window.location.reload();
-			}); 
+			});
 		</script>
 	</body>
 </html>
