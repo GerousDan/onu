@@ -53,7 +53,7 @@
 			var iWidth = window.innerWidth;
 			canvas.width = iWidth;
 			var iHeight = window.innerHeight;
-			canvas.height = iHeight;
+			canvas.height = iHeight+80;
 			var iSquare;
 			var iLogo;
 			if (iWidth < iHeight) {
@@ -84,26 +84,29 @@
 				set5: iWidth/9 + iWidth*.693,
 				card2:iWidth/22.5 + iSquare
 			};
+			var iStatus = 20;
 			var ys = {
 				background: 0,
 				logo: (iHeight*7/8 + iWidth/45 + iWidth*.087)/2, /*iHeight/40,*/
-				sets: iWidth/45,
+				sets: iWidth/45 + iStatus,
 				card1: iWidth/22.5+iWidth*.087,
 				card2: iWidth/22.5+iWidth*.087+iSquare+iWidth/45
 			};
 			var ws = {
 				logo: iLogo,
-				sets: iWidth*.173
+				sets: iWidth*.173,
+				tab: 234
 			};
 			var hs = {
 				logo: iLogo/6,
-				sets: iWidth*.087
+				sets: iWidth*.087,
+				tab: 117
 			};
 			function drawBackground(images) {
 				context.drawImage(images.background, xs.background, ys.background, iWidth, iHeight);
 			}		
 			function drawSet1(images) {
-				context.drawImage(images.sets,   0, 0, 234, 117, xs.set1, ys.sets, ws.sets, hs.sets);
+				context.drawImage(images.sets,   0, 0, ws.tab, hs.tab, xs.set1, ys.sets, ws.sets, hs.sets);
 			}
 			loadImages(sources, function(images) {
 				drawBackground(images);
@@ -111,12 +114,12 @@
 				context.drawImage(images.logo, xs.logo, ys.logo, ws.logo, hs.logo);
 				context.drawImage(images.logo, xs.logo, ys.logo, ws.logo, hs.logo);
 				drawSet1(images);
-				context.drawImage(images.sets, 234, 0, 234, 117, xs.set2, ys.sets, ws.sets, hs.sets);
-				context.drawImage(images.sets, 468, 0, 234, 117, xs.set3, ys.sets, ws.sets, hs.sets);
-				context.drawImage(images.sets, 702, 0, 234, 117, xs.set4, ys.sets, ws.sets, hs.sets);
-				context.drawImage(images.sets, 936, 0, 234, 117, xs.set5, ys.sets, ws.sets, hs.sets);
+				context.drawImage(images.sets, ws.tab  , 0, ws.tab, hs.tab, xs.set2, ys.sets, ws.sets, hs.sets);
+				context.drawImage(images.sets, ws.tab*2, 0, ws.tab, hs.tab, xs.set3, ys.sets, ws.sets, hs.sets);
+				context.drawImage(images.sets, ws.tab*3, 0, ws.tab, hs.tab, xs.set4, ys.sets, ws.sets, hs.sets);
+				context.drawImage(images.sets, ws.tab*4, 0, ws.tab, hs.tab, xs.set5, ys.sets, ws.sets, hs.sets);
 				drawSet1(images);
-				<!-- context.drawImage(images.sets,   0, 0, 234, 117, xs.set1, ys.sets, ws.sets, hs.sets); -->
+				<!-- context.drawImage(images.sets,   0, 0, ws.tab, hs.tab, xs.set1, ys.sets, ws.sets, hs.sets); -->
 				<!-- context.drawImage(images.cards,  0, 0, 409, 409, xs.set1, ys.card1,iSquare, iSquare); -->
 				<!-- context.drawImage(images.cards,409, 0, 409, 409, xs.card2,ys.card1,iSquare, iSquare); -->
 				<!-- context.drawImage(images.cards,818, 0, 409, 409, xs.set1, ys.card2,iSquare, iSquare); -->
