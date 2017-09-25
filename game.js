@@ -12,25 +12,28 @@ window.onload = function() { //141,14,11
         playGame = function(game) {};
     playGame.prototype = {
         preload: function() {
-            game.load.image('background','asset/background.png');
-            game.load.spritesheet('sets', 'asset/sets.png', setWidth, setHeight);
-            game.load.spritesheet('faces', 'asset/cards.png', facePxs, facePxs);
+            game.load.image('background','assets/background.png');
+            game.load.spritesheet('sets', 'assets/sets.png', setWidth, setHeight);
+            game.load.spritesheet('faces', 'assets/cards.png', facePxs, facePxs);
         },
         create: function() {
             this.showCards();
         },
+        showSets: function () {
+            var back = game.add.image(0,0,'background');
+            back.width = iWidth;
+            back.height = iHeight;
+            for (var i = 0; i < iSets; i++) {
+                
+            }
+        },
         showCards: function() {
+            this.showSets();
             var i, j,
-                back = game.add.image(0,0,'background'),
                 sqrPxs = game.width * gapRatio / (numCols * (gapRatio + 1) + 1),
                 gapPxs = sqrPxs / gapRatio,
                 lftPxs = (game.width - numCols * sqrPxs - (numCols - 1) * gapPxs) / 2,
                 topPxs = (game.height - numRows * sqrPxs - (numRows - 1) * gapPxs) / 2;
-            back.width = iWidth;
-            back.height = iHeight;
-            for (i = 0; i < iSets; i++) {
-                
-            }
             for (i = 0; i < numCols; i++) {
                 for (j = 0; j < numRows; j++) {
                     var face = game.add.button(lftPxs + i * (sqrPxs + gapPxs), topPxs + j * (sqrPxs + gapPxs), 'faces', this.toggleFace, this);
