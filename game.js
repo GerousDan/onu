@@ -1,5 +1,5 @@
 window.onload = function() { //141,14,11
-    var i, j,
+    var i, j, hSet, wSet, topSet, gapSet, lftSet,
         facePxs = 409,
         setWidth = 234,
         setHeight = 117,
@@ -28,8 +28,22 @@ window.onload = function() { //141,14,11
             var back = game.add.image(0,0,'background');
             back.width = iWidth;
             back.height = iHeight;
+            if (((iSets + (iSets + 1) / gapRatio) * setWidth) / (setHeight + 2 * setWidth / gapRatio) > iWidth / topPxs) {
+                wSet = iWidth / (iSets + (iSets + 1) / gapRatio);
+                hSet = wSet * setHeight / setWidth; 
+            } else {
+                hSet = topPxs * setHeight / (setHeight + 2 * setWidth / gapRatio);
+                wSet = hSet * setWidth / setHeight;
+            }
+            topSet = (topPxs - hSet) / 2;
+            gapSet = wSet / gapRatio;
+            lftSet = (iWidth - iSets * wSet - (iSets - 1) * gapSet) / 2;
             for (i = 0; i < iSets; i++) {
-                var set = game.add.button();    
+                var set = game.add.button(lftSet + i * (wSet + gapSet), topSet, 'sets', this.toggleFace, this);    
+                set.alpha = 0.5;
+                set.width = wSet;
+                set.height = hSet;
+                set.frame = i;            
             }
         },
         showCards: function() {
