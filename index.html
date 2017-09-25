@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Any Night</title>
+		<title>One Night Before</title>
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="viewport" content="width=device-width, minimal-ui, initial-scale=1.0, user-scalable = no">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-		<meta name="apple-mobile-web-app-title" content="Any Night">
+		<meta name="apple-mobile-web-app-title" content="Night Before">
 		<link rel="apple-touch-icon" href="assets/Icon-ldpi.png"><!-- App Store 	1024px × 1024px -->
 		<link rel="apple-touch-icon" sizes="76x76" href="assets/Icon-mdpi.png">
 		<link rel="apple-touch-icon" sizes="120x120" href="assets/Icon-hdpi.png"><!-- 120px × 120px (60pt × 60pt @2x) -->
@@ -29,105 +29,9 @@
 			overflow: hidden;
 		}
 		</style>
-	</head>
-	<body>
-		<canvas id="canvas"></canvas>
-		<script>
-			function loadImages(sources, callback) {
-				var images = {};
-				var loadedImages = 0;
-				var numImages = 0;
-				for(var src in sources) {
-				  numImages++;
-				}
-				for(var src in sources) {
-					images[src] = new Image();
-					images[src].onload = function() {
-						if(++loadedImages >= numImages) {
-							callback(images);
-						}
-					};
-					images[src].src = sources[src];
-				}
-			}
-			var iWidth = window.innerWidth;
-			canvas.width = iWidth;
-			var iHeight = window.innerHeight;
-			canvas.height = iHeight+80;
-			var iSquare;
-			var iLogo;
-			if (iWidth < iHeight) {
-				iSquare = iWidth;
-				iLogo = iWidth*43/45; 
-			} else {
-				iSquare = iHeight - iWidth/45 - iWidth*.087;
-				iLogo = iHeight*.75;
-			}
-			iSquare = (iSquare - iWidth/9)/4;
-			var context = canvas.getContext('2d');
-			context.globalAlpha = 0.5;
-			var sources = {
-				background: 'assets/background.png',
-				logo: 'assets/logo_hor_en.png',
-				sets: 'assets/sets.png',
-				cards: 'assets/cards.png',
-				cards2: 'assets/cards2.png',
-				cards3: 'assets/cards3.png'
-			};
-			var xs = {
-				background: 0,
-				logo: (iWidth-iLogo)/2,
-				set1: iWidth/45,
-				set2: iWidth/22.5 + iWidth*.173,
-				set3: iWidth/15 + iWidth*.346,
-				set4: iWidth*4/45 + iWidth*.52,
-				set5: iWidth/9 + iWidth*.693,
-				card2:iWidth/22.5 + iSquare
-			};
-			var iStatus = 20;
-			var ys = {
-				background: 0,
-				logo: (iHeight*7/8 + iWidth/45 + iWidth*.087)/2, /*iHeight/40,*/
-				sets: iWidth/45 + iStatus,
-				card1: iWidth/22.5+iWidth*.087,
-				card2: iWidth/22.5+iWidth*.087+iSquare+iWidth/45
-			};
-			var ws = {
-				logo: iLogo,
-				sets: iWidth*.173,
-				tab: 234
-			};
-			var hs = {
-				logo: iLogo/6,
-				sets: iWidth*.087,
-				tab: 117
-			};
-			function drawBackground(images) {
-				context.drawImage(images.background, xs.background, ys.background, iWidth, iHeight);
-			}		
-			function drawSet1(images) {
-				context.drawImage(images.sets,   0, 0, ws.tab, hs.tab, xs.set1, ys.sets, ws.sets, hs.sets);
-			}
-			loadImages(sources, function(images) {
-				drawBackground(images);
-				drawBackground(images);
-				context.drawImage(images.logo, xs.logo, ys.logo, ws.logo, hs.logo);
-				context.drawImage(images.logo, xs.logo, ys.logo, ws.logo, hs.logo);
-				drawSet1(images);
-				context.drawImage(images.sets, ws.tab  , 0, ws.tab, hs.tab, xs.set2, ys.sets, ws.sets, hs.sets);
-				context.drawImage(images.sets, ws.tab*2, 0, ws.tab, hs.tab, xs.set3, ys.sets, ws.sets, hs.sets);
-				context.drawImage(images.sets, ws.tab*3, 0, ws.tab, hs.tab, xs.set4, ys.sets, ws.sets, hs.sets);
-				context.drawImage(images.sets, ws.tab*4, 0, ws.tab, hs.tab, xs.set5, ys.sets, ws.sets, hs.sets);
-				drawSet1(images);
-				<!-- context.drawImage(images.sets,   0, 0, ws.tab, hs.tab, xs.set1, ys.sets, ws.sets, hs.sets); -->
-				<!-- context.drawImage(images.cards,  0, 0, 409, 409, xs.set1, ys.card1,iSquare, iSquare); -->
-				<!-- context.drawImage(images.cards,409, 0, 409, 409, xs.card2,ys.card1,iSquare, iSquare); -->
-				<!-- context.drawImage(images.cards,818, 0, 409, 409, xs.set1, ys.card2,iSquare, iSquare); -->
-				<!-- context.drawImage(images.cards,818, 0, 409, 409, xs.set1, ys.card2,iSquare, iSquare); -->
-			});
-			window.addEventListener("orientationchange", function() {
-				window.location.reload();
-			});
-		</script>
-	</body>
+		<script type="text/javascript" src="phaser.js"></script>
+        <script type="text/javascript" src="game.js"></script>
+    </head>
+    <body>
+    </body>
 </html>
