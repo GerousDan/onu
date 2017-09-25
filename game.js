@@ -66,4 +66,4 @@ window.onload = function() { //141,14,11
     };
     game.state.add("PlayGame", playGame);
     game.state.start("PlayGame");
-};
+}; 
