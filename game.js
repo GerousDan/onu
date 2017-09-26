@@ -22,6 +22,15 @@ window.onload = function() { //141,14,11
             game.load.spritesheet('faces', 'assets/cards.png', facePxs, facePxs);
         },
         create: function() {
+            //game.scale.pageAlignHorizontally = true;
+            //game.scale.pageAlignVertically = true;
+            game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+            game.stage.disableVisibilityChange = true;
+            var style = {
+                font: "48px Monospace",
+                fill: "#00ff00",
+                align: "center"
+            };
             this.showCards();
         },
         showSets: function () {
