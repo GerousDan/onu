@@ -6,8 +6,8 @@ window.onload = function() { //141,14,11
         iSets = 5,
         numRows = 5,
         numCols = 4,
-        iHeight = 512,
-        iWidth  = 323,
+        iHeight = 2048,
+        iWidth  = 1293,
         gapRatio = 12,
         sqrPxs = iWidth * gapRatio / (numCols * (gapRatio + 1) + 1),
         gapPxs = sqrPxs / gapRatio,
@@ -20,6 +20,7 @@ window.onload = function() { //141,14,11
             game.load.image('background','assets/background.png');
             game.load.spritesheet('sets', 'assets/sets.png', setWidth, setHeight);
             game.load.spritesheet('faces', 'assets/cards.png', facePxs, facePxs);
+            game.load.image('btn','assets/button.png');
         },
         create: function() {
             //game.scale.pageAlignHorizontally = true;
@@ -66,11 +67,22 @@ window.onload = function() { //141,14,11
                     face.frame = j * numCols + i;
                 }
             }
+            var tBtn = topPxs + numRows * (sqrPxs + gapPxs) + gapPxs,
+                hBtn = iHeight - tBtn - gapPxs,
+                hBtnPng = 85,
+                wBtn = 231,
+                wBtn = wBtn * hBtn / hBtnPng;
+            var startBtn = game.add.button((iWidth - wBtn) / 2, tBtn , 'btn', this.startPlay, this);
+                startBtn.width = wBtn;
+                startBtn.height = hBtn;
         },
         toggleFace: function(target) {
             if (target.alpha == 1) {
                 target.alpha = 0.5;
             } else target.alpha = 1;
+        },
+        startPlay: function() {
+
         }
     };
     game.state.add("PlayGame", playGame);
