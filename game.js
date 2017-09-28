@@ -1,15 +1,18 @@
 window.onload = function() { //141,14,11
-    var i, j, hSet, wSet, topSet, gapSet, lftSet, startBtn, iSels = 0, iSetSels = 0, iMore = 5, gLogo, 
-        selArr = [],
+    var i, j, hSet, wSet, topSet, gapSet, lftSet, startBtn, gLogo, 
         facePxs = 409,
         setWidth = 234,
         setHeight = 117,
         iSets = 5,
+        iMore = 5,
         numRows = 5,
         numCols = 4,
         iHeight = 2048,
         iWidth = 1293,
         gapRatio = 12,
+        maxPlayers = 12, 
+        iSetSels = 0,
+        iSels = 0, 
         sqrPxs = iWidth * gapRatio / (numCols * (gapRatio + 1) + 1),
         gapPxs = sqrPxs / gapRatio,
         lftPxs = (iWidth - numCols * sqrPxs - (numCols - 1) * gapPxs) / 2,
@@ -17,6 +20,7 @@ window.onload = function() { //141,14,11
         game = new Phaser.Game(iWidth, iHeight),
         playGame = function(game) {};
     playGame.prototype = {
+        btnText: null,
         preload: function() {
             game.load.image('splash','assets/Splash-568h_en.png');
             game.load.image('background','assets/background.png');
@@ -34,11 +38,6 @@ window.onload = function() { //141,14,11
             //game.scale.pageAlignVertically = true;
             game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
             game.stage.disableVisibilityChange = true;
-            var style = {
-                font: "48px Monospace",
-                fill: "#00ff00",
-                align: "center"
-            };
             this.showSets();
         },
         showSets: function () {
@@ -104,7 +103,12 @@ window.onload = function() { //141,14,11
             startBtn.width = w;
             startBtn.height = h;
             startBtn.alpha = 0.5;
-
+            var style = {
+                font: "72px 'KabelBook'",
+                fill: "#ffffff",
+                align: "center"
+            };
+            this.btnText = game.add.text(iWidth / 2, y , "Select 6 or\nmore roles", style);
         },
         toggleFace: function(target) {
             if (target.alpha == 1) {
@@ -118,6 +122,7 @@ window.onload = function() { //141,14,11
                 startBtn.alpha = 1;
             } else {
                 startBtn.alpha = 0.5;
+
             }
         },
         startPlay: function() {

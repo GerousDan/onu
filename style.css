@@ -1,0 +1,19 @@
+html, body {
+    position: fixed;
+    border: 0px;
+    overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+    background: #000;
+}
+.fontLoader {
+    position: absolute;
+    left: -1000px;
+    visibility: hidden;
+}
+@font-face {
+    font-family: 'KabelBook';
+    src: url('assets/KabelBook.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
