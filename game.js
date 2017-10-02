@@ -7,14 +7,15 @@ window.onload = function() { //141,14,11
         iMore = 5,
         numRows = 5,
         numCols = 4,
-        iHeight = 2048,
-        iWidth = 1293,
+        gapPxs = 34,
+        iWidth = (facePxs + gapPxs) * numCols + gapPxs, //1293, //1806
+        iHeight = 3121,//(facePxs + gapPxs) * numRols + gapPxs,//2048, //2860
         gapRatio = 12,
         maxPlayers = 12, 
         iSetSels = 0,
         iSels = 0, 
         sqrPxs = iWidth * gapRatio / (numCols * (gapRatio + 1) + 1),
-        gapPxs = sqrPxs / gapRatio,
+        //gapPxs = sqrPxs / gapRatio,
         lftPxs = (iWidth - numCols * sqrPxs - (numCols - 1) * gapPxs) / 2,
         topPxs = (iHeight - numRows * sqrPxs - (numRows - 1) * gapPxs) / 2,        
         game = new Phaser.Game(iWidth, iHeight),
@@ -104,11 +105,12 @@ window.onload = function() { //141,14,11
             startBtn.height = h;
             startBtn.alpha = 0.5;
             var style = {
-                font: "72px 'KabelBook'",
+                font: "80px 'KabelBook'",
                 fill: "#ffffff",
                 align: "center"
             };
-            this.btnText = game.add.text(iWidth / 2, y , "Select 6 or\nmore roles", style);
+            this.btnText = game.add.text(iWidth / 2, y + h / 2, "TIMER", style);
+            this.btnText.anchor.set(0.5);
         },
         toggleFace: function(target) {
             if (target.alpha == 1) {
